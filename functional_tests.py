@@ -18,10 +18,10 @@ class NewPlayerTest(unittest.TestCase):
 
 		# He sees the page title mentioning the name
 		self.assertIn('Sliding Tiles', self.browser.title)
-
-		# He sees a puzzle loaded on the page
 		header = self.browser.find_element_by_tag_name('h1').text
 		self.assertIn('Sliding Tiles', header)
+
+		# He sees the puzzle loaded on the page
 
 		# He clicks a tile touching the blank space.
 		self.fail('Finish the test!')
