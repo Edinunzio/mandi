@@ -16,11 +16,6 @@ class NewPlayerTest(unittest.TestCase):
 		# He visits the home page.
 		self.browser.get('http://localhost:8000')
 
-		# He sees the page title mentioning the name
-		self.assertIn('Sliding Tiles', self.browser.title)
-		header = self.browser.find_element_by_tag_name('h1').text
-		self.assertIn('Sliding Tiles', header)
-
 		# He sees the puzzle loaded on the page
 
 		# He clicks a tile touching the blank space.

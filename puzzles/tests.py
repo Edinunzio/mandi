@@ -11,8 +11,8 @@ class HomePageTest(TestCase):
 		found = resolve('/')
 		self.assertEqual(found.func, home_page)
 
-	def test_home_page_returns_correct_html(self):
+	def test_home_page_returns_correct_grid_size(self):
 		request = HttpRequest()
-		response = home_page(request)
-		expected_html = render_to_string('home.html')
+		response = home_page(request, 4)
+		expected_html = render_to_string('home.html', {'grid_size': 4, 'tiles': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]})
 		self.assertEqual(response.content.decode(), expected_html)

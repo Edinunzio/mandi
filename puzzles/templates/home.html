@@ -3,17 +3,9 @@
 		<title>Sliding Tiles Game</title>
 	</head>
 	<body>
-		<h1>Sliding Tiles Game</h1>
-		<div id="puzzle_container">
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-		</div>
+		{% block content %}
+		<p> {{ grid_size }} </p>
+		
+		{% endblock %}
 	</body>
 </html>
