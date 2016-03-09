@@ -20,9 +20,8 @@ class NewPlayerTest(unittest.TestCase):
 		self.assertIn('Sliding Tiles', self.browser.title)
 
 		# He sees a puzzle loaded on the page
-		puzzle_container = self.browser.find_element_by_id('puzzle_container')
-		tiles = self.browser.find_elements_by_class('tile')
-		self.assertIn(tiles, puzzle_container)
+		header = self.browser.find_element_by_tag_name('h1').text
+		self.assertIn('Sliding Tiles', header)
 
 		# He clicks a tile touching the blank space.
 		self.fail('Finish the test!')
