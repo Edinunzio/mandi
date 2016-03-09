@@ -1,10 +1,12 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import unittest
 
 class NewPlayerTest(unittest.TestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
+		self.browser.implicitly_wait(3)
 
 	def tearDown(self):
 		self.browser.quit()
@@ -16,11 +18,14 @@ class NewPlayerTest(unittest.TestCase):
 
 		# He sees the page title mentioning the name
 		self.assertIn('Sliding Tiles', self.browser.title)
-		self.fail('Finish the test!')
 
 		# He sees a puzzle loaded on the page
+		puzzle_container = self.browser.find_element_by_id('puzzle_container')
+		tiles = self.browser.find_elements_by_class('tile')
+		self.assertIn(tiles, puzzle_container)
 
 		# He clicks a tile touching the blank space.
+		self.fail('Finish the test!')
 
 		# He sees the tiles switch place upon click.
 
