@@ -16,7 +16,7 @@ class HomePageTest(TestCase):
 		request = HttpRequest()
 		response = home_page(request, 4)
 		expected_html = render_to_string('home.html', {'grid_size': 4, 'tiles': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]})
-		self.assertEqual(response.content.decode(), expected_html)
+		self.assertContains(response, '<div class="tile">15</div>')
 
 	def test_home_page_displays_correct_number_of_tiles(self):
 		puzzle = Puzzle()
