@@ -4,6 +4,7 @@ from django.test import TestCase
 from django.http import HttpRequest
 
 from puzzles.views import home_page
+from puzzles.models import Puzzle
 
 class HomePageTest(TestCase):
 
@@ -16,3 +17,10 @@ class HomePageTest(TestCase):
 		response = home_page(request, 4)
 		expected_html = render_to_string('home.html', {'grid_size': 4, 'tiles': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]})
 		self.assertEqual(response.content.decode(), expected_html)
+
+class PuzzleModelTest(TestCase):
+
+	def test_puzzle_generates_tiles_returns_array(self):
+		puzzle = Puzzle()
+		tile_count = puzzle.generate_tiles(3)
+		self.assertEqual(tile_count, [0, 1, 2, 3, 4, 5, 6, 7, 8])
