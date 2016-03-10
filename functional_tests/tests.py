@@ -11,12 +11,30 @@ class NewPlayerTest(LiveServerTestCase):
 	def tearDown(self):
 		self.browser.quit()
 
+	def test_layout_and_styling(self):
+		# Barry goes to the home page
+		self.browser.get(self.live_server_url)
+		self.browser.set_window_size(1024, 768)
+
+		# The beautiful layout reminds him of Mandi
+		# Even balanced, centered
+		puzzlebox = self.browser.find_element_by_id('puzzle')
+		self.assertAlmostEqual(
+			puzzlebox.location['x'] + puzzlebox.size['width'] / 2,
+			512,
+			delta=5
+		)
+
 	def test_can_show_puzzle_and_win(self):
 		# Barry's ready to take a chance at sliding tiles.
 		# He visits the home page.
 		self.browser.get(self.live_server_url)
 
 		# He sees the puzzle loaded on the page
+
+		# He decides to try a different size puzzle and enters a 
+		# new grid size in the input box and a new game is loaded
+		# according to the number he entered into the input box
 
 		# He clicks a tile touching the blank space.
 		self.fail('Finish the test!')
