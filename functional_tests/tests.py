@@ -1,8 +1,8 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
 
-class NewPlayerTest(unittest.TestCase):
+class NewPlayerTest(LiveServerTestCase):
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
@@ -14,7 +14,7 @@ class NewPlayerTest(unittest.TestCase):
 	def test_can_show_puzzle_and_win(self):
 		# Barry's ready to take a chance at sliding tiles.
 		# He visits the home page.
-		self.browser.get('http://localhost:8000')
+		self.browser.get(self.live_server_url)
 
 		# He sees the puzzle loaded on the page
 
@@ -24,6 +24,3 @@ class NewPlayerTest(unittest.TestCase):
 		# He sees the tiles switch place upon click.
 
 		# He solves the puzzle and sees the congratulations message
-
-if __name__ == '__main__':
-	unittest.main(warnings='ignore')

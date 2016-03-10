@@ -5,6 +5,11 @@
 	<body>
 		{% block content %}
 		<p> {{ grid_size }} </p>
+		<div class="puzzle_container">
+			{% for tile in tiles %}
+			<div class="tile">{{ tile }}</div>
+			{% endfor %}
+		</div>
 		
 		{% endblock %}
 	</body>
