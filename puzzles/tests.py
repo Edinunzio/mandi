@@ -2,6 +2,7 @@ from django.core.urlresolvers import resolve
 from django.template.loader import render_to_string
 from django.test import TestCase
 from django.http import HttpRequest
+from django.core.exceptions import ValidationError
 
 from puzzles.views import home_page
 from puzzles.models import Puzzle
@@ -20,7 +21,8 @@ class HomePageTest(TestCase):
 		request = HttpRequest()
 		response = home_page(request, 4)
 		expected_html = render_to_string('home.html', {'grid_size': 4, 'tiles': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]})
-		self.assertContains(response, '<div class="tile"><p>15</p></div>')
+		self.assertContains(response, '<div class="tile tile_15"><p>15</p></div>')
+
 
 	def test_home_page_displays_correct_number_of_tiles(self):
 		puzzle = Puzzle()
@@ -29,7 +31,7 @@ class HomePageTest(TestCase):
 		request = HttpRequest()
 		response = home_page(request, 2)
 
-		self.assertIn('<div class="tile"><p>3</p></div>', response.content.decode())
+		self.assertIn('<div class="tile tile_3"><p>3</p></div>', response.content.decode())
 
 class PuzzleModelTest(TestCase):
 
@@ -42,3 +44,9 @@ class PuzzleModelTest(TestCase):
 		puzzle = Puzzle()
 		tiles = puzzle.generate_tiles(3)
 		self.assertNotEqual(tiles, [0,1,2,3,4,5,6,7,8])
+
+	def test_puzzle_raises_exception_upon_non_integer_grid_submission(self):
+		puzzle = Puzzle()
+		with self.assertRaises(ValidationError):
+			puzzle.generate_tiles('should be an integer')
+		
