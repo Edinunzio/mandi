@@ -1,13 +1,19 @@
 function Game(problem, solution, grid_size){
-
-this.problem = problem;
-this.solution = solution;
-this.grid_size = grid_size;
-this.blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
-
 }
+Game.prototype.problem = problem;
+Game.prototype.solution = solution;
+Game.prototype.grid_size = grid_size;
+Game.prototype.blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
+
+Game.prototype.get_empty_tile = function(){
+	empty_tile = $('.blank_tile');
+	return empty_tile;
+}
+
 module.exports = Game;
-	/*var Game = function(problem, solution, grid_size){
+
+/*
+	var Game = function(problem, solution, grid_size){
 		this.problem = problem;
 		this.solution = solution;
 		this.grid_size = grid_size;
