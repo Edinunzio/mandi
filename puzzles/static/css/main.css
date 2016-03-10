@@ -1,5 +1,12 @@
 .puzzle_container {
-	width: 400px;
+	width: 80%;
 	margin:auto;
 	border:1px solid black;
+}
+
+.tile {
+	padding: 20px;
+	background-color: #eee;
+	margin: auto;
+	border: 1px solid #666;
 }

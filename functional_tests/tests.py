@@ -19,6 +19,7 @@ class NewPlayerTest(LiveServerTestCase):
 		# The beautiful layout reminds him of Mandi
 		# Even balanced, centered
 		puzzlebox = self.browser.find_element_by_id('puzzle')
+		self.browser.implicitly_wait(3)
 		self.assertAlmostEqual(
 			puzzlebox.location['x'] + puzzlebox.size['width'] / 2,
 			512,
