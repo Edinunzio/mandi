@@ -9,13 +9,20 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-2"></div>
+				<div class="col-md-2">
+					<form method="POST">
+						<input name="grid_size" id="grid_size" />
+						{% csrf_token %}
+					</form>
+				</div>
 				<div class="col-md-10">
 					{% block content %}
 						<p> {{ grid_size }} </p>
 						<div id="puzzle" class="puzzle_container">
 							{% for tile in tiles %}
-								<div class="tile">{{ tile }}</div>
+								<div class="tile_container" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
+									<div class="tile"><p>{{ tile }}</p></div>
+								</div>
 							{% endfor %}
 						</div>
 					</div>

@@ -36,6 +36,9 @@ class NewPlayerTest(LiveServerTestCase):
 		# He decides to try a different size puzzle and enters a 
 		# new grid size in the input box and a new game is loaded
 		# according to the number he entered into the input box
+		inputgridbox = self.browser.find_element_by_id('grid_size')
+		inputgridbox.send_keys(5)
+		inputgridbox.send_keys(Keys.ENTER)
 
 		# He clicks a tile touching the blank space.
 		self.fail('Finish the test!')
