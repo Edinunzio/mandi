@@ -21,7 +21,7 @@
 							{% for tile in tiles %}
 								{% if tile == 0 %}
 									<div class="tile_container" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
-									<div class="tile blank_tile"><p>0</p></div>
+									<div class="tile blank_tile disabled"><p>0</p></div>
 									</div>
 								{% else %}
 								<div class="tile_container" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
@@ -33,10 +33,13 @@
 					</div>
 					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 					<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
-					<script type="text/javascript" src="static/js/main.js"></script>
+					<script type="text/javascript" src="static/js/game.js"></script>
 					<script>
-						var game_init = {{ tiles }};
+						var problem = {{ tiles }};
+						var solution = {{ sorted_tiles }};
 						var grid_size = {{ grid_size }};
+						var game = new Game(problem, solution, grid_size);
+						console.log(game.problem);
 					</script>
 				{% endblock %}
 			</div>

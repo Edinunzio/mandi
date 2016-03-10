@@ -26,7 +26,7 @@ class HomePageTest(TestCase):
 
 	def test_home_page_displays_correct_number_of_tiles(self):
 		puzzle = Puzzle()
-		tiles = puzzle.generate_tiles(2)
+		sorted_tiles, tiles = puzzle.generate_tiles(2)
 
 		request = HttpRequest()
 		response = home_page(request, 2)
@@ -37,12 +37,12 @@ class PuzzleModelTest(TestCase):
 
 	def test_puzzle_generates_tiles_returns_array(self):
 		puzzle = Puzzle()
-		tiles = puzzle.generate_tiles(3)
+		sorted_tiles, tiles = puzzle.generate_tiles(3)
 		self.assertEqual(type(tiles), list)
 
 	def test_puzzle_generates_tiles_returns_shuffled_array(self):
 		puzzle = Puzzle()
-		tiles = puzzle.generate_tiles(3)
+		sorted_tiles, tiles = puzzle.generate_tiles(3)
 		self.assertNotEqual(tiles, [0,1,2,3,4,5,6,7,8])
 
 	def test_puzzle_raises_exception_upon_non_integer_grid_submission(self):

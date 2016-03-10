@@ -9,14 +9,14 @@ def home_page(request, n=3):
 	if request.method == 'POST':
 		try:
 			grid_size = int(request.POST['grid_size'])
-			tiles = puzzle.generate_tiles(grid_size)
+			sorted_tiles, tiles = puzzle.generate_tiles(grid_size)
 			tile_size = 100/grid_size
-			content = {'grid_size': grid_size, 'tiles': tiles, 'tile_size': tile_size}
+			content = {'grid_size': grid_size, 'sorted_tiles': sorted_tiles, 'tiles': tiles, 'tile_size': tile_size}
 			return render(request, 'home.html', content)
 		except ValidationError:
 			pass
 
-	tiles = puzzle.generate_tiles(n)
+	sorted_tiles, tiles = puzzle.generate_tiles(n)
 	tile_size = 100/n
-	content = {'grid_size': n, 'tiles': tiles, 'tile_size': tile_size}
+	content = {'grid_size': n, 'sorted_tiles': sorted_tiles, 'tiles': tiles, 'tile_size': tile_size}
 	return render(request, 'home.html', content)

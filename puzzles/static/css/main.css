@@ -22,6 +22,7 @@
 }
 
 .blank_tile { background-color: #000; }
+.blank_tile p {visibility: hidden;}
 
 .tile p {
 	position: absolute;

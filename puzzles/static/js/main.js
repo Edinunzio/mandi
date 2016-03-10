@@ -17,17 +17,11 @@
 		});
 		sorted_container.shift();
 		sorted_container.push('0');
-
-		console.log(sorted_container);
 		return sorted_container;
 	}();
-	var is_solved = function(arr1, arr2){
-		if (arr1 === arr2){
-			alert('You win!');
-		}
-	}();
-	$('.tile_container').on('click', '.tile:not(.blank_tile)', function(e){
-		var blank_html = '<div class="tile blank_tile"><p>0</p></div>';
+
+	$('.tile_container').on('click', '.tile:not(.disabled)', function(e){
+		var blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
 		var empty_tile = $('.blank_tile');
 		
 		var num = this.textContent;
@@ -35,13 +29,19 @@
 		$('.tile_'+num).replaceWith(blank_html);
 		$(empty_tile).replaceWith(swap_html);
 		var containers = $('.tile_container p');
-		var container = []
+		var container = [];
 		$(containers).each(function(i){
 			container.push(containers[i].textContent);
 		});
-		is_solved(solution, container);
-		console.log(container);
+		/*if(solution === container){
+			alert('You win!');
+		}else{
+			console.log(container);
+			console.log(solution);
+		}*/
+
 	});
 
+		
 	
 })();
