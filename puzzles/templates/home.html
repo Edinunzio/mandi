@@ -5,13 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="static/css/main.css" rel="stylesheet" media="screen">
-
 	</head>
 	<body>
 		<div class="container">
 			<div class="row">
-					<form method="POST">
-						<input type="number" name="grid_size" id="grid_size" placeholder="Change grid size here"/>
+				<form method="POST">
+					<input type="number" name="grid_size" id="grid_size" placeholder="Change grid size here"/>
 						{% csrf_token %}
 					</form>
 				<div class="col-md-12">
@@ -19,21 +18,24 @@
 						<p> {{ grid_size }} </p>
 						<div id="puzzle" class="puzzle_container">
 							{% for tile in tiles %}
+								<div class="tile_container placeholder_{{ forloop.counter }}" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
 								{% if tile == 0 %}
-									<div class="tile_container" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
+									
 									<div class="tile blank_tile disabled"><p>0</p></div>
-									</div>
+									
 								{% else %}
-								<div class="tile_container" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
+								
 									<div class="tile tile_{{ tile }}"><p>{{ tile }}</p></div>
-								</div>
+								
 								{% endif %}
+								</div>
 							{% endfor %}
 						</div>
 					</div>
 					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 					<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
-					<script type="text/javascript" src="static/js/game.js"></script>
+					<script type="text/javascript" src="static/js/Game.js"></script>
+					<script type="text/javascript" src="static/js/main.js"></script>
 					<script>
 						var problem = {{ tiles }};
 						var solution = {{ sorted_tiles }};

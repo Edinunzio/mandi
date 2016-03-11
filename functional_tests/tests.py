@@ -39,6 +39,8 @@ class NewPlayerTest(LiveServerTestCase):
 		inputgridbox = self.browser.find_element_by_id('grid_size')
 		inputgridbox.send_keys(5)
 		inputgridbox.send_keys(Keys.ENTER)
+		tiles = self.browser.find_elements_by_class_name('tile')
+		self.assertEqual(len(tiles), 25)
 
 		# He clicks a tile touching the blank space.
 		self.fail('Finish the test!')

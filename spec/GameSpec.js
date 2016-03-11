@@ -1,5 +1,5 @@
 describe("Game", function() {
-  var Game = require('../../puzzles/static/js/Game');
+  var Game = require('../lib/Game');
   var game;
   var _problem;
   var _solution;
@@ -21,9 +21,18 @@ describe("Game", function() {
   });
 
   it("should alert is game won", function() {
-    expect(game.is_winner(_solution, _fake_submit)).toEqual('something');
+    winner = game.is_winner(_solution, _fake_submit);
+    expect(winner).toEqual(true);
   });
 
+  it("should do nothing if the game is still in play", function() {
+    loser = game.is_winner(_problem, _solution);
+    expect(loser).toEqual(false);
+  });
+
+  it("should swap attributes with empty square when clicked", function(){
+
+  });
   /*describe("when song has been paused", function() {
     beforeEach(function() {
       player.play(song);
