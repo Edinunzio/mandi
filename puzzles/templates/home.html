@@ -37,11 +37,7 @@
 					<script type="text/javascript" src="static/js/Game.js"></script>
 					<script type="text/javascript" src="static/js/main.js"></script>
 					<script>
-						var problem = {{ tiles }};
-						var solution = {{ sorted_tiles }};
-						var grid_size = {{ grid_size }};
-						var game = new Game(problem, solution, grid_size);
-						console.log(game.problem);
+						var game = new Game({{ tiles }}, {{ sorted_tiles }}, {{ grid_size }});
 					</script>
 				{% endblock %}
 			</div>
