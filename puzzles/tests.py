@@ -17,21 +17,12 @@ class HomePageTest(TestCase):
 		response = self.client.get('/')
 		self.assertTemplateUsed(response, 'home.html')
 
-	def test_home_page_returns_correct_grid_size(self):
+	def test_home_page_displays_correct_number_of_tiles(self):
 		request = HttpRequest()
 		response = home_page(request, 4)
 		expected_html = render_to_string('home.html', {'grid_size': 4, 'tiles': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]})
 		self.assertContains(response, '<div class="tile tile_15"><p>15</p></div>')
 
-
-	def test_home_page_displays_correct_number_of_tiles(self):
-		puzzle = Puzzle()
-		sorted_tiles, tiles = puzzle.generate_tiles(2)
-
-		request = HttpRequest()
-		response = home_page(request, 2)
-
-		self.assertIn('<div class="tile tile_3"><p>3</p></div>', response.content.decode())
 
 class PuzzleModelTest(TestCase):
 
@@ -49,4 +40,10 @@ class PuzzleModelTest(TestCase):
 		puzzle = Puzzle()
 		with self.assertRaises(ValidationError):
 			puzzle.generate_tiles('should be an integer')
+
+	def test_puzzle_rejects_too_small_integer_grid_submission(self):
+		puzzle = Puzzle()
+		with self.assertRaises(ValidationError):
+			exc1, exc2 = puzzle.generate_tiles(1)
+			self.assertEqual(ValidationError, exc2)
 		

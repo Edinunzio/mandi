@@ -12,33 +12,30 @@
 				<form method="POST">
 					<input type="number" min=2 name="grid_size" id="grid_size" placeholder="Change grid size here"/>
 						{% csrf_token %}
-					</form>
+				</form>
 				<div class="col-md-12">
-					{% block content %}
-						<p> {{ grid_size }} </p>
-						<div id="puzzle" class="puzzle_container">
-							{% for tile in tiles %}
-								<div class="tile_container placeholder_{{ forloop.counter }}" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
-								{% if tile == 0 %}
-									
-									<div class="tile blank_tile disabled"><p>0</p></div>
-									
-								{% else %}
+				{% block content %}
+					<p> {{ grid_size }} </p>
+					<div id="puzzle" class="puzzle_container">
+					{% for tile in tiles %}
+						<div class="tile_container placeholder_{{ forloop.counter }}" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
+						{% if tile == 0 %}
+							<div class="tile blank_tile disabled"><p>0</p></div>
+						{% else %}
+							<div class="tile tile_{{ tile }}"><p>{{ tile }}</p></div>
 								
-									<div class="tile tile_{{ tile }}"><p>{{ tile }}</p></div>
-								
-								{% endif %}
-								</div>
-							{% endfor %}
+						{% endif %}
 						</div>
+					{% endfor %}
 					</div>
-					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-					<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
-					<script type="text/javascript" src="static/js/Game.js"></script>
-					<script type="text/javascript" src="static/js/main.js"></script>
-					<script>
-						var game = new Game({{ tiles }}, {{ sorted_tiles }}, {{ grid_size }});
-					</script>
+				</div>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+				<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
+				<script type="text/javascript" src="static/js/main.js"></script>
+				<script type="text/javascript" src="static/js/Game.js"></script>
+				<script>
+					var game = new Game({{ tiles }}, {{ sorted_tiles }}, {{ grid_size }});
+				</script>
 				{% endblock %}
 			</div>
 		</div>
