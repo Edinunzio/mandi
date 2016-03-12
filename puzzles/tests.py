@@ -48,10 +48,16 @@ class PuzzleModelTest(TestCase):
 
 	def test_puzzle_generates_legal_moves_map(self):
 		puzzle = Puzzle()
-		tiles = puzzle.generate_tiles(3)
-		moves_map1 = puzzle.legal_moves_map(3, tiles)
-		moves_map2 = {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
-		self.assertEqual(moves_map1, moves_map2)
+		tiles_3 = puzzle.generate_tiles(3)
+		moves_map3a = puzzle.legal_moves_map(3, tiles_3)
+		moves_map3b = {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
+
+		tiles_4 = puzzle.generate_tiles(4)
+		moves_map4a = puzzle.legal_moves_map(4, tiles_4)
+		moves_map4b = {1: [2, 5], 2: [1, 3, 6], 3: [2, 4, 7], 4: [3, 8], 5: [1, 6, 9], 6: [2, 5, 7, 10], 7: [3, 6, 8, 11], 8: [4, 7, 12], 9: [5, 10, 13], 10: [6, 9, 11, 14], 11: [7, 10, 12, 15], 12: [8, 11, 16], 13: [9, 14], 14: [10, 13, 15], 15: [11, 14, 16], 16: [12, 15]}
+		
+		self.assertEqual(moves_map3a, moves_map3b)
+		self.assertEqual(moves_map4a, moves_map4b)
 
 	def test_puzzle_raises_exception_upon_non_integer_grid_submission(self):
 		puzzle = Puzzle()

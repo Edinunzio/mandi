@@ -35,12 +35,11 @@ class Puzzle(models.Model):
 			return False
 
 	def legal_moves_map(self, n, tiles):
-		tiles = [n**2 if x==0 else x for x in tiles] # Normalizing 0 for last int
+		tiles = [n**2 if x==0 else x for x in tiles] # Swapping 0 with n**2
 		length = len(tiles)
 		rows = [tiles[i*length // n: (i+1)*length // n] for i in range(n)]
 		columns = [[row[i] for row in rows] for i in range(n)]
 		blocks = rows + columns
-		
 
 		legal_moves = {}
 		for i in range(1,length+1):
@@ -58,7 +57,4 @@ class Puzzle(models.Model):
 						moves.append(block[pos+1])
 				moves.sort()
 			legal_moves.update({i:moves})
-		print(legal_moves)
-			#legal_moves[i] = moves
-		#legal_moves = {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
 		return legal_moves
