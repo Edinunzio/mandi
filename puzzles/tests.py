@@ -31,6 +31,7 @@ class PuzzleModelTest(TestCase):
 		sorted_tiles = puzzle.generate_tiles(3)
 		tiles = puzzle.shuffle_tiles(3, sorted_tiles)
 		self.assertEqual(type(tiles), list)
+		self.assertEqual(len(tiles), 9)
 
 	def test_puzzle_shuffle_tiles(self):
 		puzzle = Puzzle()
