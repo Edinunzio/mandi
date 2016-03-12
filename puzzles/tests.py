@@ -19,32 +19,45 @@ class HomePageTest(TestCase):
 
 	def test_home_page_displays_correct_number_of_tiles(self):
 		request = HttpRequest()
-		response = home_page(request, 4)
-		expected_html = render_to_string('home.html', {'grid_size': 4, 'tiles': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]})
-		self.assertContains(response, '<div class="tile tile_15"><p>15</p></div>')
+		response_3 = home_page(request, 3)
+		response_4 = home_page(request, 4)
+		self.assertContains(response_3, '<div class="tile tile_8"><p>8</p></div>')
+		self.assertNotIn(str(response_3), '<div class="tile tile_15"><p>15</p></div>')
+		self.assertContains(response_4, '<div class="tile tile_15"><p>15</p></div>')
 
 
 class PuzzleModelTest(TestCase):
 
 	def test_puzzle_generates_tiles_returns_array(self):
 		puzzle = Puzzle()
-		sorted_tiles = puzzle.generate_tiles(3)
-		tiles = puzzle.shuffle_tiles(3, sorted_tiles)
-		self.assertEqual(type(tiles), list)
-		self.assertEqual(len(tiles), 9)
+		sorted_tiles_3 = puzzle.generate_tiles(3)
+		tiles_3 = puzzle.shuffle_tiles(3, sorted_tiles_3)
+		sorted_tiles_4 = puzzle.generate_tiles(4)
+		tiles_4 = puzzle.shuffle_tiles(4, sorted_tiles_4)
+		self.assertEqual(type(tiles_3), list)
+		self.assertEqual(len(tiles_3), 9)
+		self.assertEqual(len(tiles_4), 16)
 
 	def test_puzzle_shuffle_tiles(self):
 		puzzle = Puzzle()
-		sorted_tiles = puzzle.generate_tiles(3)
-		tiles = puzzle.shuffle_tiles(3, sorted_tiles)
-		self.assertNotEqual(tiles, [1,2,3,4,5,6,7,8,0])
+		sorted_tiles_3 = puzzle.generate_tiles(3)
+		tiles_3 = puzzle.shuffle_tiles(3, sorted_tiles_3)
+		sorted_tiles_4 = puzzle.generate_tiles(4)
+		tiles_4 = puzzle.shuffle_tiles(4, sorted_tiles_4)
+		self.assertNotEqual(tiles_3, [1,2,3,4,5,6,7,8,0])
+		self.assertNotEqual(tiles_4, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0])
 
 	def test_puzzle_checks_solvable(self):
 		puzzle = Puzzle()
-		unsolvable_puzzle = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,14,0]
-		self.assertEqual(puzzle.check_solvable(unsolvable_puzzle), False)
-		solvable_puzzle = [1,2,3,0,4,5,7,8,6]
-		self.assertEqual(puzzle.check_solvable(solvable_puzzle), True)
+		unsolvable_puzzle_2 = [2,1,3,0]
+		unsolvable_puzzle_4 = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,14,0]
+		solvable_puzzle_3 = [1,2,3,0,4,5,7,8,6]
+		solvable_puzzle_2 = [1,2,0,3]
+		
+		self.assertEqual(puzzle.check_solvable(unsolvable_puzzle_2), False)
+		self.assertEqual(puzzle.check_solvable(unsolvable_puzzle_4), False)
+		self.assertEqual(puzzle.check_solvable(solvable_puzzle_2), True)
+		self.assertEqual(puzzle.check_solvable(solvable_puzzle_3), True)
 
 	def test_puzzle_generates_legal_moves_map(self):
 		puzzle = Puzzle()
