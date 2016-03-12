@@ -35,67 +35,42 @@ class Puzzle(models.Model):
 			return False
 
 	def legal_moves_map(self, n, tiles):
-		tiles = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]#[n**2 if x==0 else x for x in tiles] # Normalizing 0 for last int
+		tiles = [n**2 if x==0 else x for x in tiles] # Normalizing 0 for last int
 		length = len(tiles)
 		rows = [tiles[i*length // n: (i+1)*length // n] for i in range(n)]
 		columns = [[row[i] for row in rows] for i in range(n)]
 		blocks = rows + columns
-		print('blocks_length:')
-		print(blocks)
+		
 
 		legal_moves = {}
 		for i in range(1,length+1):
 			moves = []
 			for block in blocks:
-				block_length = len(block)
-				#print('block_length:')
-				#print(block_length)
+				limit = len(block) - 1
 				if i in block:
-					i_pos = block.index(i)
+					pos = block.index(i)
+					#moves.append(block)
+					if pos == 0:
+						moves.append(block[1])
+					elif pos == limit:
+						moves.append(block[-2])
+					else:
+						moves.append(block[pos-1])
+						moves.append(block[pos+1])
+					"""i_pos = block.index(i)
 					if i_pos == 0:
 						moves.append(block[1])
-					if i_pos == block_length+1:
+					if i_pos == block_length:
 						moves.append(block[(block_length - 1)])
-					if i_pos >0 < block_length +1:
+					if i_pos >0 < i_pos +1:
 						try:
 							moves.append(block[i_pos + 1])
 							moves.append(block[i_pos - 1])
 						except IndexError as e:
-							#print('Index error begins')
-							print(e)
-							print(block_length)
-			legal_moves[i] = moves
-			#print('i ends')
-			#print(legal_moves)
-			"""for chunk in chunks:
-				moves = []
-				if i in chunk:
-					i_position = chunk.index(i)
-					if i_position == 0:
-						moves.append(chunk[1])
-						print(chunk[1])
-					elif i_position == -1:
-						moves.append(chunk[-2])
-					else:
-						pass
-						#moves.append(chunk[i_position+1])
-						#moves.append(chunk[i_position-1])
-				legal_moves.update({i:moves})
-				"""
+							pass"""
+				moves.sort()
+			legal_moves.update({i:moves})
 		print(legal_moves)
+			#legal_moves[i] = moves
 		#legal_moves = {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
-		"""for i in range(1,length):
-			moveable_tiles = []
-			for chunk in chunks:
-				if i in chunk:
-					i_position = chunk.index(i)
-					if i_position == 0:
-						moveable_tiles.append(chunk[i+1])
-					elif i_position == -1:
-						moveable_tiles.append(chunk[i-1])
-					else:
-						moveable_tiles.append(chunk[i-1])
-						moveable_tiles.append(chunk[i+1])
-			legal_moves.append({i:moveable_tiles})"""
-		#return {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
 		return legal_moves
