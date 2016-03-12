@@ -7,33 +7,39 @@ class Puzzle(models.Model):
 	def generate_tiles(self, n):
 		try:
 			n = int(n)
-			if n >1:
+			if n > 1:
 				tiles = list(range(0,(n*n)))
 				sorted_tiles = tiles[1:]
 				sorted_tiles.append(0)
-				return sorted_tiles, random.sample(tiles, (n*n))
+				return sorted_tiles
 			else:
 				raise ValidationError(('%(n)s must be larger than 1.'), params={'n': n})
 		except ValueError:
 			raise ValidationError(('%(n)s is not a number'), params={'n': n})
 
-	def as_columns(self, random_tiles):
-		columns = [random_tiles[0]]
-		length = len(random_tiles)
-		root = math.sqrt(length)
-		#first_row = random_tiles[0:root]
-		#last_row = random_tiles[length-root:length]
-		return [[1,5,9,13], [2,6,10,14], [3,7,11,15], [4,8,12,0]]
+	def shuffle_tiles(self, n, tiles):
+		return random.sample(tiles, (n*n))
 
-	def as_rows(self, random_tiles):
-		length = len(random_tiles)
-		root = math.sqrt(length)
-		return [[1,2,3], [4,5,6], [7,8,0]]
+	def as_rows(self, n, tiles):
+		length = len(tiles)
+		return [tiles[i*length // n: (i+1)*length // n] for i in range(n)]
 
-	
-	def check_solvable(self, random_tiles):
-		length = len(random_tiles)
-		return False
+	def as_columns(self, n, rows):
+		return [[row[i] for row in rows] for i in range(n)]
+
+	def check_solvable(self, tiles):
+		length = len(tiles)
+		sum_container = []
+		for i in range(length):
+			count = 0
+			for tile in tiles[i:]:
+				if tiles[i] > tile and tile != 0:
+					count += 1
+			sum_container.append(count)
+		if sum(sum_container) % 2 == 0:
+			return True
+		else:
+			return False
 
 	def legal_moves_map(self, random_tiles):
 		pass
