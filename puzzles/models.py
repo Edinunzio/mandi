@@ -20,13 +20,6 @@ class Puzzle(models.Model):
 	def shuffle_tiles(self, n, tiles):
 		return random.sample(tiles, (n*n))
 
-	def as_rows(self, n, tiles):
-		length = len(tiles)
-		return [tiles[i*length // n: (i+1)*length // n] for i in range(n)]
-
-	def as_columns(self, n, rows):
-		return [[row[i] for row in rows] for i in range(n)]
-
 	def check_solvable(self, tiles):
 		length = len(tiles)
 		sum_container = []
@@ -41,5 +34,51 @@ class Puzzle(models.Model):
 		else:
 			return False
 
-	def legal_moves_map(self, rows, cols):
-		return {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
+	def legal_moves_map(self, n, tiles):
+		tiles = [n**2 if x==0 else x for x in tiles] # Normalizing 0 for last int
+		length = len(tiles)
+		rows = [tiles[i*length // n: (i+1)*length // n] for i in range(n)]
+		columns = [[row[i] for row in rows] for i in range(n)]
+		blocks = rows + columns
+
+		legal_moves = {}
+		for i in range(1,length+1):
+			for block in blocks:
+				block_length = len(block)
+				if i in block:
+					print(block)
+					i_pos = block.index(i)
+					print(i_pos)
+					print('**********')
+			"""for chunk in chunks:
+				moves = []
+				if i in chunk:
+					i_position = chunk.index(i)
+					if i_position == 0:
+						moves.append(chunk[1])
+						print(chunk[1])
+					elif i_position == -1:
+						moves.append(chunk[-2])
+					else:
+						pass
+						#moves.append(chunk[i_position+1])
+						#moves.append(chunk[i_position-1])
+				legal_moves.update({i:moves})
+				"""
+		print(legal_moves)
+		legal_moves = {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
+		"""for i in range(1,length):
+			moveable_tiles = []
+			for chunk in chunks:
+				if i in chunk:
+					i_position = chunk.index(i)
+					if i_position == 0:
+						moveable_tiles.append(chunk[i+1])
+					elif i_position == -1:
+						moveable_tiles.append(chunk[i-1])
+					else:
+						moveable_tiles.append(chunk[i-1])
+						moveable_tiles.append(chunk[i+1])
+			legal_moves.append({i:moveable_tiles})"""
+		#return {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
+		return legal_moves

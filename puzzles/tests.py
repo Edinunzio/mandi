@@ -46,23 +46,10 @@ class PuzzleModelTest(TestCase):
 		solvable_puzzle = [1,2,3,0,4,5,7,8,6]
 		self.assertEqual(puzzle.check_solvable(solvable_puzzle), True)
 
-	def test_puzzle_as_rows(self):
-		puzzle = Puzzle()
-		game = [1,2,3,4,5,6,7,8,0]
-		rows = puzzle.as_rows(3, game)
-		self.assertEqual(rows, [[1,2,3], [4,5,6], [7,8,0]])
-
-	def test_puzzle_as_columns(self):
-		puzzle = Puzzle()
-		game = [[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,0]]
-		cols = puzzle.as_columns(4, game)
-		self.assertEqual(cols, [[1,5,9,13], [2,6,10,14], [3,7,11,15], [4,8,12,0]])
-
 	def test_puzzle_generates_legal_moves_map(self):
 		puzzle = Puzzle()
-		sorted_tiles = puzzle.generate_tiles(3)
-		tiles = puzzle.shuffle_tiles(3, sorted_tiles)
-		moves_map1 = puzzle.legal_moves_map(tiles)
+		tiles = puzzle.generate_tiles(3)
+		moves_map1 = puzzle.legal_moves_map(3, tiles)
 		moves_map2 = {1:[2,4], 2:[1,3,5], 3:[2,6], 4:[1,5,7], 5:[2,4,6,8], 6:[3,5,9], 7:[4,8], 8:[5,7,9], 9:[6,8]}
 		self.assertEqual(moves_map1, moves_map2)
 
