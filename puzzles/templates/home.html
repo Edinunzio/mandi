@@ -15,7 +15,8 @@
 				</form>
 				<div class="col-md-12">
 				{% block content %}
-					<p> {{ grid_size }} </p>
+					<label>Grid Size</label>
+					<p name="grid_size_display"> {{ grid_size }} </p>
 					<div id="puzzle" class="puzzle_container">
 					{% for tile in tiles %}
 						<div class="tile_container placeholder_{{ forloop.counter }}" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
