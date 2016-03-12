@@ -49,7 +49,6 @@ class Puzzle(models.Model):
 				limit = len(block) - 1
 				if i in block:
 					pos = block.index(i)
-					#moves.append(block)
 					if pos == 0:
 						moves.append(block[1])
 					elif pos == limit:
@@ -57,17 +56,6 @@ class Puzzle(models.Model):
 					else:
 						moves.append(block[pos-1])
 						moves.append(block[pos+1])
-					"""i_pos = block.index(i)
-					if i_pos == 0:
-						moves.append(block[1])
-					if i_pos == block_length:
-						moves.append(block[(block_length - 1)])
-					if i_pos >0 < i_pos +1:
-						try:
-							moves.append(block[i_pos + 1])
-							moves.append(block[i_pos - 1])
-						except IndexError as e:
-							pass"""
 				moves.sort()
 			legal_moves.update({i:moves})
 		print(legal_moves)
