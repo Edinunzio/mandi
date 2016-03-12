@@ -36,6 +36,33 @@ class PuzzleModelTest(TestCase):
 		sorted_tiles, tiles = puzzle.generate_tiles(3)
 		self.assertNotEqual(tiles, [0,1,2,3,4,5,6,7,8])
 
+	def test_puzzle_checks_solvable(self):
+		puzzle = Puzzle()
+		unsolvable_puzzle = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,14,0]
+		#self.assertEqual(puzzle.check_solvable(unsolvable_puzzle), False)
+		self.fail('Finish this!')
+
+	def test_puzzle_as_columns(self):
+		puzzle = Puzzle()
+		game = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0]
+		cols = puzzle.as_columns(game)
+		#self.assertEqual(cols, [[1,5,9,13], [2,6,10,14], [3,7,11,15], [4,8,12,0]])
+		self.fail('Finish this!')
+
+	def test_puzzle_as_rows(self):
+		puzzle = Puzzle()
+		game = [1,2,3,4,5,6,7,8,0]
+		rows = puzzle.as_rows(game)
+		self.assertEqual(rows, [[1,2,3], [4,5,6], [7,8,0]])
+
+
+	def test_puzzle_generates_legal_moves_map(self):
+		puzzle = Puzzle()
+		moves_map1 = puzzle.legal_moves_map(3)
+		moves_map2 = []
+		#self.assertEqual(moves_map1, moves_map2)
+		self.fail('Finish this!')
+
 	def test_puzzle_raises_exception_upon_non_integer_grid_submission(self):
 		puzzle = Puzzle()
 		with self.assertRaises(ValidationError):
