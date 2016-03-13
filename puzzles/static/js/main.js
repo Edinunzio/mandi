@@ -16,18 +16,15 @@
 		$('.tile_'+num).replaceWith(blank_html);
 		$(empty_tile).replaceWith(swap_html);
 		var board_tiles = $('#puzzle .tile p');
-		var x = []
+		var tiles = []
 		for (i=0;i<board_tiles.length; i++){
 			x.push(board_tiles[i].textContent);
 		}
-		var tiles = game.readBoard(x);
-		console.log('tiles');
-		console.log(tiles);
+		tiles = game.readBoard(tiles);
 		game.isWinner(tiles);
 		enableTiles(tiles);
 	});
 	$('#hint').on('click', function(e){
-		console.log(e);
 		alert('good luck, sucker! HA HA HA!');
 	});
 })();

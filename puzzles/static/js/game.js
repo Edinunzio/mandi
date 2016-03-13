@@ -7,7 +7,6 @@ function Game(solution, grid_size, legal_moves_map){
 
 	this.locatesEmptySpace = function(currentBoard){
 		this.empty_space = currentBoard.indexOf(0);
-		alert(this.empty_space);
 		return this.empty_space;
 	};
 
