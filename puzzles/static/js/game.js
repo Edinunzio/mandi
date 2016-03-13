@@ -16,7 +16,6 @@ function Game(solution, grid_size, legal_moves_map){
 	this.isWinner = function(arr1, arr2){
 		if(String(arr1) == String(arr2)){
 			this.is_solved = true;
-			// do something to show they won
 			return true;
 		}
 	};
@@ -53,7 +52,8 @@ function Game(solution, grid_size, legal_moves_map){
 		for(i=0; i<iterations; i++){
 			var choices = this.getsLegalMoves(zeroLocation);
 			var random_choice = choices[this.getRandomInt(0, choices.length-1)];
-			
+			// something has gone wrong here algo wise. should not be generating 
+			// impossible layouts like I'm seeing. shouldn't even need to filter this
 			var swapabble = board.indexOf(random_choice);
 			var b = board[zeroLocation];
 			board[zeroLocation] = board[swapabble];

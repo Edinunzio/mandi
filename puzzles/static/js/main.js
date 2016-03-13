@@ -18,8 +18,9 @@
 		game.isWinner(solution, game.currentBoard);
 		if (game.is_solved){
 			alert('Congratulations!');
+		} else {
+			enableTiles(tiles);
 		}
-		enableTiles(tiles);
 	});
 	$('#hint').on('click', function(e){
 		alert('good luck, sucker! HA HA HA!');
