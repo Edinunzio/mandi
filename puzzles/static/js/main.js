@@ -12,8 +12,13 @@
 		$(containers).each(function(i){
 			container.push(containers[i].textContent);
 		});
-		var board_tiles = $('#puzzle .tile p');
-		game.currentBoard = game.readBoard(board_tiles);
-		game.isWinner(board_tiles);
+		var board_tiles = $('#puzzle .tile p').text();
+		/*var tiles = []
+		for(i=0; i<board_tiles.length; i++){
+			tiles.push(parseInt(board_tiles[i]));
+		}
+		*/
+		game.currentBoard = game.readBoard(tiles);
+		game.isWinner(game.currentBoard);
 	});
 })();

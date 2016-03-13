@@ -26,7 +26,7 @@ describe("Game", function() {
   };*/
 
   it("should read board after every move", function(){
-    currentState = game.readBoard(['1','2','3','4','5','0','7','8','6']);
+    currentState = game.readBoard(game.problem);
     expect(currentState).toEqual([1,2,3,4,5,0,7,8,6]);
   });
 
