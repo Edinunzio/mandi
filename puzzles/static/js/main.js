@@ -18,7 +18,7 @@
 		var board_tiles = $('#puzzle .tile p');
 		var tiles = []
 		for (i=0;i<board_tiles.length; i++){
-			x.push(board_tiles[i].textContent);
+			tiles.push(board_tiles[i].textContent);
 		}
 		tiles = game.readBoard(tiles);
 		game.isWinner(tiles);
