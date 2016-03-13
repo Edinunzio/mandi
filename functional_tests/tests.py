@@ -21,6 +21,8 @@ class NewPlayerTest(LiveServerTestCase):
 			512,
 			delta=5
 		)
+		hintbutton = self.browser.find_element_by_id('hint')
+		self.assertEqual(type(hintbutton), 'button')
 
 	def test_can_show_puzzle_and_win(self):
 		# Barry visits the home page.
@@ -54,7 +56,7 @@ class NewPlayerTest(LiveServerTestCase):
 		grid_size_display_2 = self.browser.find_element_by_name('grid_size_display')
 		self.assertEqual(grid_size_display_2.text, '2')
 
-		# Barry's ready to take a chance again so he clicks swappable tile.
+		# Barry's ready to take a chance again so he clicks a swappable tile.
 		# He sees the tiles switch place upon click.
 		self.fail('Finish the test!')
 

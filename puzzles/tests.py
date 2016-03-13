@@ -17,6 +17,17 @@ class HomePageTest(TestCase):
 		response = self.client.get('/')
 		self.assertTemplateUsed(response, 'home.html')
 
+	def test_home_page_contains_web_components(self):
+		request = HttpRequest()
+		response_2 = home_page(request, 2)
+		response_3 = home_page(request, 3)
+		self.assertContains(response_2, 'id="puzzle"')
+		self.assertContains(response_3, 'id="puzzle"')
+		self.assertContains(response_2, 'id="grid_size"')
+		self.assertContains(response_3, 'id="grid_size"')
+		self.assertContains(response_2, 'id="hint"')
+		self.assertContains(response_3, 'id="hint"')
+
 	def test_home_page_contains_legal_moves_map(self):
 		request = HttpRequest()
 		response_3 = home_page(request, 3)
