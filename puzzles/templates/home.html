@@ -39,23 +39,12 @@
 					var enableTiles = function(tiles){
 						$('.tile').addClass('disabled');
 						var empty_start = game.locatesEmptySpace(tiles);
-						var to_enable = game.enablesLegalMoves(empty_start);
-						
+						var to_enable = game.getsLegalMoves(empty_start);
 						for (i=0; i<to_enable.length; i++){
 							$('.placeholder_'+ to_enable[i]+ ' .tile').removeClass('disabled');
 						}
 					};
 					enableTiles({{tiles}});
-					//var empty_start = game.locatesEmptySpace({{tiles}});
-					//var to_enable = game.enablesLegalMoves(empty_start);
-					//for (i=0; i<to_enable.length; i++){
-					//	$('.placeholder_'+ to_enable[i]+ ' .tile').removeClass('disabled');
-					//}
-					/*var empty_start = game.locatesEmptySpace({{ tiles }});
-					var to_enable = game.enablesLegalMoves(empty_start);
-					for (i=0; i<to_enable.length; i++){
-
-					}*/
 				</script>
 				{% endblock %}
 			</div>

@@ -28,9 +28,9 @@ class HomePageTest(TestCase):
 		request = HttpRequest()
 		response_3 = home_page(request, 3)
 		response_4 = home_page(request, 4)
-		self.assertContains(response_3, '<div class="tile tile_8"><p>8</p></div>')
-		self.assertNotIn(str(response_3), '<div class="tile tile_15"><p>15</p></div>')
-		self.assertContains(response_4, '<div class="tile tile_15"><p>15</p></div>')
+		self.assertContains(response_3, 'tile_8"><p>8</p></div>')
+		self.assertNotIn(str(response_3), 'tile_15"><p>15</p></div>')
+		self.assertContains(response_4, 'tile_15"><p>15</p></div>')
 
 
 class PuzzleModelTest(TestCase):

@@ -29,7 +29,7 @@ describe("Game", function() {
   });
 
   it("should restrict draggability according to legal_moves_map"), function(){
-    free_tiles_0 = game.enablesLegalMoves(0)
+    free_tiles_0 = game.getsLegalMoves(0)
     expect(free_tiles_0).toEqual([2,4])
   };
 
@@ -46,10 +46,6 @@ describe("Game", function() {
   it("should do nothing if the game is still in play", function() {
     loser = game.isWinner([1,2,3,4,5,0,7,8,6]);
     expect(loser).toEqual(false);
-  });
-
-  it("should swap attributes with empty square when clicked", function(){
-
   });
   
 });

@@ -12,9 +12,4 @@
 		game.isWinner(tiles);
 		enableTiles(tiles);
 	});
-
-	
-
-
-
 })();
