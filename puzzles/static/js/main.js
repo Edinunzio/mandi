@@ -1,6 +1,5 @@
 (function() {
-
-$('.tile_container').on('click', '.tile:not(.disabled)', function(e){
+	$('.tile_container').on('click', '.tile:not(.disabled)', function(e){
 		var blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
 		var empty_tile = $('.blank_tile');
 		
@@ -13,7 +12,8 @@ $('.tile_container').on('click', '.tile:not(.disabled)', function(e){
 		$(containers).each(function(i){
 			container.push(containers[i].textContent);
 		});
+		var board_tiles = $('#puzzle .tile p');
+		game.currentBoard = game.readBoard(board_tiles);
+		game.isWinner(board_tiles);
 	});
-		
-	
 })();

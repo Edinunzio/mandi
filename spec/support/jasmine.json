@@ -6,6 +6,7 @@
   "helpers": [
     "helpers/**/*.js"
   ],
+  "src_dir": "static",
   "stopSpecOnExpectationFailure": false,
   "random": false
 }
