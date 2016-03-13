@@ -7,18 +7,8 @@
 		var swap_html = '<div class="tile tile_'+num+'"><p>'+ num +'</p></div>'
 		$('.tile_'+num).replaceWith(blank_html);
 		$(empty_tile).replaceWith(swap_html);
-		var containers = $('.tile_container p');
-		var container = [];
-		$(containers).each(function(i){
-			container.push(containers[i].textContent);
-		});
 		var board_tiles = $('#puzzle .tile p').text();
-		/*var tiles = []
-		for(i=0; i<board_tiles.length; i++){
-			tiles.push(parseInt(board_tiles[i]));
-		}
-		*/
-		game.currentBoard = game.readBoard(tiles);
-		game.isWinner(game.currentBoard);
+		var x = game.readBoard(board_tiles);
+		game.isWinner(x);
 	});
 })();

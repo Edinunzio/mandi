@@ -21,6 +21,13 @@ describe("Game", function() {
     expect(game.blankHtml).toEqual('<div class="tile blank_tile disabled"><p>0</p></div>');
   });
 
+  it("should be able to locate the index of the empty space", function() {
+    zero_location_5 = game.locatesEmptySpace(game.problem)
+    zero_location_0 = game.locatesEmptySpace([0,1,2,4,3,5,6,8,7])
+    expect(zero_location_0).toEqual(0)
+    expect(zero_location_5).toEqual(5)
+  });
+
   /*it("should restrict draggability according to legal_moves_map"), function(){
 
   };*/
@@ -30,13 +37,13 @@ describe("Game", function() {
     expect(currentState).toEqual([1,2,3,4,5,0,7,8,6]);
   });
 
-  it("should alert is game won", function() {
-    winner = game.isWinner(_solution, _fakeSubmit);
+  it("should equal true when game equals solution", function() {
+    winner = game.isWinner(game.solution);
     expect(winner).toEqual(true);
   });
 
   it("should do nothing if the game is still in play", function() {
-    loser = game.isWinner(_problem, _solution);
+    loser = game.isWinner([1,2,3,4,5,0,7,8,6]);
     expect(loser).toEqual(false);
   });
 
