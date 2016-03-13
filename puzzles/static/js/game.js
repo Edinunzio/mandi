@@ -17,7 +17,6 @@ function Game(solution, grid_size, legal_moves_map){
 		if(String(arr1) == String(arr2)){
 			this.is_solved = true;
 			// do something to show they won
-			// fix new bug due to zero indexing
 			return true;
 		}
 	};
@@ -33,12 +32,11 @@ function Game(solution, grid_size, legal_moves_map){
 			board.push(parseInt(tiles[i]));
 		}
 		this.currentBoard = board;
-		//this.recordsMove(board);
 		return board;
 	};
 
 	this.getsLegalMoves = function(zero_location){
-		zeroIndexPlusOne = zero_location + 1;
+		var zeroIndexPlusOne = zero_location + 1;
 		return this.legalMovesMap[zeroIndexPlusOne];
 	};
 
@@ -48,28 +46,22 @@ function Game(solution, grid_size, legal_moves_map){
 
 	this.shufflesBoard = function(solution, grid_size){
 		this.setupMoves.push(solution);
-		zeroLocation = solution.length - 1;
-		iterations = this.getRandomInt(zeroLocation, zeroLocation*2);
-		//console.log(iterations);
+		var zeroLocation = solution.length - 1;
+		var iterations = this.getRandomInt(zeroLocation, zeroLocation*2);
 		var board = solution;
 
 		for(i=0; i<iterations; i++){
-			choices = this.getsLegalMoves(zeroLocation);
-			random_choice = choices[this.getRandomInt(0, choices.length-1)];
+			var choices = this.getsLegalMoves(zeroLocation);
+			var random_choice = choices[this.getRandomInt(0, choices.length-1)];
 			
-			swapabble = board.indexOf(random_choice);
+			var swapabble = board.indexOf(random_choice);
 			var b = board[zeroLocation];
 			board[zeroLocation] = board[swapabble];
-			board[swapabble] = b;			
-			//console.log(board);
-			
-			//var _board = board.swap(zeroLocation, swapabble);
+			board[swapabble] = b;
 			var _board = board.slice(0);
 			this.setupMoves.push(_board);
 			zeroLocation = swapabble;
 		}
-		console.log(this.setupMoves);
-		//alert(this.setupMoves);
 		return board;
 	};
 }

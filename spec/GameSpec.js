@@ -53,9 +53,8 @@ describe("Game", function() {
   });
 
   it("should shuffle the board", function(){
-    ex = game.shufflesBoard([1,2,3,4,5,6,7,8,0], 3, game.legal_moves_map);
-
-    //expect(ex.length).toEqual(2);
+    ex = game.shufflesBoard([1,2,3,4,5,6,7,8,0], 3);
+    expect(ex).not.toEqual([1,2,3,4,5,6,7,8,0]);
   });
 
   it("should equal true when game equals solution", function() {
