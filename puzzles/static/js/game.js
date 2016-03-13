@@ -13,10 +13,11 @@ function Game(solution, grid_size, legal_moves_map){
 		return this.empty_space;
 	};
 
-	this.isWinner = function(currentBoard){
-		if(String(this.solution) == String(currentBoard)){
+	this.isWinner = function(arr1, arr2){
+		if(String(arr1) == String(arr2)){
 			this.is_solved = true;
 			// do something to show they won
+			// fix new bug due to zero indexing
 			return true;
 		}
 	};
@@ -32,6 +33,7 @@ function Game(solution, grid_size, legal_moves_map){
 			board.push(parseInt(tiles[i]));
 		}
 		this.currentBoard = board;
+		//this.recordsMove(board);
 		return board;
 	};
 
@@ -63,7 +65,7 @@ function Game(solution, grid_size, legal_moves_map){
 			
 			//var _board = board.swap(zeroLocation, swapabble);
 			var _board = board.slice(0);
-			this.setupMoves.push([_board]);
+			this.setupMoves.push(_board);
 			zeroLocation = swapabble;
 		}
 		console.log(this.setupMoves);

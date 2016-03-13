@@ -61,8 +61,8 @@ describe("Game", function() {
   it("should equal true when game equals solution", function() {
     shouldWin = game.readBoard(game.solution);
     shouldLose = game.readBoard([1,2,3,4,5,0,7,8,6]);
-    winner = game.isWinner(shouldWin);
-    loser = game.isWinner(shouldLose);
+    winner = game.isWinner(shouldWin, [1,2,3,4,5,6,7,8,0]);
+    loser = game.isWinner(shouldLose, [1,2,3,4,5,6,7,8,0]);
     expect(winner).toEqual(true);
     expect(loser).not.toEqual(true);
   });

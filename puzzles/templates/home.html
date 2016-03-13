@@ -48,10 +48,12 @@
 				<script type="text/javascript" src="static/js/main.js"></script>
 				<script type="text/javascript" src="static/js/game.js"></script>
 				<script>
+				var solution = {{ tiles }};
 					var game = new Game({{ tiles }}, {{ grid_size }}, {{ legal_moves_map }});
-					var board_new = game.shufflesBoard(game.solution, game.grid_size, game.legal_moves_map);
+					
+					var board_new = game.shufflesBoard(game.solution, game.grid_size);
 					game.currentBoard = board_new;
-					console.log(game.currentBoard);
+					//console.log(game.solution);
 					var enableTiles = function(tiles){
 						$('.tile').addClass('disabled');
 						var empty_start = game.locatesEmptySpace(tiles);

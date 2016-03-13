@@ -1,11 +1,6 @@
 (function() {
-	Array.prototype.swap = function (x,y) {
-		var b = this[x];
-		this[x] = this[y];
-		this[y] = b;
-		return this;
-	}
 	
+
 	$('.tile_container').on('click', '.tile:not(.disabled)', function(e){
 		var blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
 		var empty_tile = $('.blank_tile');
@@ -20,7 +15,13 @@
 			tiles.push(board_tiles[i].textContent);
 		}
 		tiles = game.readBoard(tiles);
-		game.isWinner(tiles);
+		game.recordsMove(tiles);
+		game.isWinner(solution, game.currentBoard);
+		if (game.is_solved){
+			alert('Congratulations!');
+		}
+		//alert(solution);
+		//alert(game.currentBoard);
 		enableTiles(tiles);
 	});
 	$('#hint').on('click', function(e){
