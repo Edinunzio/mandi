@@ -42,18 +42,29 @@ describe("Game", function() {
     expect(currentState).toEqual([1,2,3,4,5,0,7,8,6]);
   });
 
+  it("should append board to track player's moves", function(){
+    currentBoard_1 = [1,2,3,4,5,0,7,8,6];
+    game.recordsMove(currentBoard_1)
+    currentBoard_2 = [1,2,0,4,5,3,7,8,6];
+    game.recordsMove(currentBoard_2);
+    currentBoard_3 = [1,0,2,4,5,3,7,8,6];
+    game.recordsMove(currentBoard_3);
+    expect(game.sessionMoves).toEqual([[1,2,3,4,5,0,7,8,6], [1,2,0,4,5,3,7,8,6], [1,0,2,4,5,3,7,8,6]]);
+  });
+
+  it("should shuffle the board", function(){
+    ex = game.shufflesBoard([1,2,3,4,5,6,7,8,0], 3, game.legal_moves_map);
+
+    //expect(ex.length).toEqual(2);
+  });
+
   it("should equal true when game equals solution", function() {
     shouldWin = game.readBoard(game.solution);
     shouldLose = game.readBoard([1,2,3,4,5,0,7,8,6]);
     winner = game.isWinner(shouldWin);
     loser = game.isWinner(shouldLose);
     expect(winner).toEqual(true);
-    expect(loser).toEqual(false);
-  });
-
-  it("should do nothing if the game is still in play", function() {
-    loser = game.isWinner([1,2,3,4,5,0,7,8,6]);
-    expect(loser).toEqual(false);
+    expect(loser).not.toEqual(true);
   });
   
 });

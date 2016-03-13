@@ -4,26 +4,32 @@
 		<title>Sliding Tiles Game</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 		<link href="static/css/main.css" rel="stylesheet" media="screen">
 	</head>
-	<body>
+	<body>{% block content %}
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<h1 class="jumbotron">Sliding Tiles</h1>
+				<div class="col-md-12 page-header">
+					<div class="h1">Sliding Tiles</div>
 				</div>
 			</div>
 			<div class="row">
-				{% block content %}
-				<div class="col-md-2">
+				<div class="col-md-3">
+					<div class="h2 text-center">
+						<label>Grid Size</label> 
+						<p name="grid_size_display"> {{ grid_size }} x {{grid_size}}</p>
+					</div>
+					<hr>
 					<form method="POST">
-						<input type="number" min=2 name="grid_size" id="grid_size" placeholder="Change grid size here"/>
+						<input type="number" class="form-control input-lg" min=2 name="grid_size" id="grid_size" placeholder="Change grid size"/>
 							{% csrf_token %}
 					</form>
-					<label>Grid Size:</label> 
-					<p name="grid_size_display"> {{ grid_size }} x {{grid_size}}</p>
+					<hr>
+					<div id="hint" class="btn-info button">Hint</div>
+					
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div id="puzzle" class="puzzle_container">
 					{% for tile in tiles %}
 						<div class="tile_container placeholder_{{ forloop.counter }}" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
@@ -37,15 +43,13 @@
 					{% endfor %}
 					</div>
 				</div>
-				<div class="col-md-2">
-					<div id="hint" class="btn-info button">Hint</div>
-				</div>
 				<script type="text/javascript" src="static/js/jquery.min.js"></script>
 				<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="static/js/main.js"></script>
 				<script type="text/javascript" src="static/js/game.js"></script>
 				<script>
 					var game = new Game({{ tiles }}, {{ grid_size }}, {{ legal_moves_map }});
+					game.shufflesBoard(game.solution, game.grid_size, game.legal_moves_map);
 					var enableTiles = function(tiles){
 						$('.tile').addClass('disabled');
 						var empty_start = game.locatesEmptySpace(tiles);
@@ -54,7 +58,7 @@
 							$('.placeholder_'+ to_enable[i]+ ' .tile').removeClass('disabled');
 						}
 					};
-					enableTiles({{tiles}});
+					enableTiles(game.solution);
 				</script>
 				{% endblock %}
 			</div>
