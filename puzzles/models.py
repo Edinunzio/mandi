@@ -17,9 +17,6 @@ class Puzzle(models.Model):
 		except ValueError:
 			raise ValidationError(('%(n)s is not a number'), params={'n': n})
 
-	def shuffle_tiles(self, n, tiles):
-		return random.sample(tiles, (n*n))
-
 	def check_solvable(self, tiles):
 		length = len(tiles)
 		sum_container = []

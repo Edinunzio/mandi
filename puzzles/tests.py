@@ -37,22 +37,11 @@ class PuzzleModelTest(TestCase):
 
 	def test_puzzle_generates_tiles_returns_array(self):
 		puzzle = Puzzle()
-		sorted_tiles_3 = puzzle.generate_tiles(3)
-		tiles_3 = puzzle.shuffle_tiles(3, sorted_tiles_3)
-		sorted_tiles_4 = puzzle.generate_tiles(4)
-		tiles_4 = puzzle.shuffle_tiles(4, sorted_tiles_4)
+		tiles_3 = puzzle.generate_tiles(3)
+		tiles_4 = puzzle.generate_tiles(4)
 		self.assertEqual(type(tiles_3), list)
 		self.assertEqual(len(tiles_3), 9)
 		self.assertEqual(len(tiles_4), 16)
-
-	def test_puzzle_shuffle_tiles(self):
-		puzzle = Puzzle()
-		sorted_tiles_3 = puzzle.generate_tiles(3)
-		tiles_3 = puzzle.shuffle_tiles(3, sorted_tiles_3)
-		sorted_tiles_4 = puzzle.generate_tiles(4)
-		tiles_4 = puzzle.shuffle_tiles(4, sorted_tiles_4)
-		self.assertNotEqual(tiles_3, [1,2,3,4,5,6,7,8,0])
-		self.assertNotEqual(tiles_4, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0])
 
 	def test_puzzle_checks_solvable(self):
 		puzzle = Puzzle()
