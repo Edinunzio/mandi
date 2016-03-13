@@ -28,9 +28,10 @@ describe("Game", function() {
     expect(zero_location_5).toEqual(5)
   });
 
-  /*it("should restrict draggability according to legal_moves_map"), function(){
-
-  };*/
+  it("should restrict draggability according to legal_moves_map"), function(){
+    free_tiles_0 = game.enablesLegalMoves(0)
+    expect(free_tiles_0).toEqual([2,4])
+  };
 
   it("should read board after every move", function(){
     currentState = game.readBoard(game.problem);

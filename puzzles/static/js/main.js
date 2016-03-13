@@ -4,11 +4,17 @@
 		var empty_tile = $('.blank_tile');
 		
 		var num = this.textContent;
-		var swap_html = '<div class="tile tile_'+num+'"><p>'+ num +'</p></div>'
+		var swap_html = '<div class="tile disabled tile_'+num+'"><p>'+ num +'</p></div>'
 		$('.tile_'+num).replaceWith(blank_html);
 		$(empty_tile).replaceWith(swap_html);
 		var board_tiles = $('#puzzle .tile p').text();
-		var x = game.readBoard(board_tiles);
-		game.isWinner(x);
+		var tiles = game.readBoard(board_tiles);
+		game.isWinner(tiles);
+		enableTiles(tiles);
 	});
+
+	
+
+
+
 })();

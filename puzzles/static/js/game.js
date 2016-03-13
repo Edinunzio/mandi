@@ -26,6 +26,11 @@ function Game(problem, solution, grid_size, legal_moves_map){
 		currentBoard = board;
 		return board;
 	};
+	this.enablesLegalMoves = function(zero_location){
+		zeroIndexPlusOne = zero_location + 1;
+		alert(this.legalMovesMap[zeroIndexPlusOne]);
+		return this.legalMovesMap[zeroIndexPlusOne];
+	};
 }
 
 // uncomment below for jasmine tests. comment out for prod
