@@ -34,7 +34,7 @@ class NewPlayerTest(LiveServerTestCase):
 
 		# He sees the number of tiles is the grid size ^2 which defaults to 3
 		grid_size_display_3 = self.browser.find_element_by_name('grid_size_display')
-		self.assertEqual(grid_size_display_3.text, '3')
+		self.assertEqual(grid_size_display_3.text, '3 x 3')
 		tiles_3 = self.browser.find_elements_by_class_name('tile')
 		self.assertEqual(len(tiles_3), 9)
 
@@ -45,7 +45,7 @@ class NewPlayerTest(LiveServerTestCase):
 		inputgridbox.send_keys(5)
 		inputgridbox.send_keys(Keys.ENTER)
 		grid_size_display_5 = self.browser.find_element_by_name('grid_size_display')
-		self.assertEqual(grid_size_display_5.text, '5')
+		self.assertEqual(grid_size_display_5.text, '5 x 5')
 		tiles_5 = self.browser.find_elements_by_class_name('tile')
 		self.assertEqual(len(tiles_5), 25)
 
@@ -59,7 +59,7 @@ class NewPlayerTest(LiveServerTestCase):
 		inputgridbox.send_keys(2)
 		inputgridbox.send_keys(Keys.ENTER)
 		grid_size_display_2 = self.browser.find_element_by_name('grid_size_display')
-		self.assertEqual(grid_size_display_2.text, '2')
+		self.assertEqual(grid_size_display_2.text, '2 x 2')
 
 		# Barry's ready to take a chance again so he clicks a swappable tile.
 		# He sees the tiles switch place upon click.

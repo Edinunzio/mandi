@@ -5,8 +5,8 @@ function Game(solution, grid_size, legal_moves_map){
 	this.legalMovesMap = legal_moves_map;
 	this.currentBoard = solution;
 
-	this.locatesEmptySpace = function(solution){
-		this.empty_space = solution.indexOf(0);
+	this.locatesEmptySpace = function(currentBoard){
+		this.empty_space = currentBoard.indexOf(0);
 		return this.empty_space;
 	};
 
