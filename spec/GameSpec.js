@@ -28,10 +28,14 @@ describe("Game", function() {
     expect(zero_location_5).toEqual(5)
   });
 
-  it("should restrict draggability according to legal_moves_map"), function(){
+  it("should restrict draggability according to legal_moves_map", function(){
     free_tiles_0 = game.getsLegalMoves(0)
+    free_tiles_1 = game.getsLegalMoves(1)
+    free_tiles_2 = game.getsLegalMoves(2)
     expect(free_tiles_0).toEqual([2,4])
-  };
+    expect(free_tiles_1).toEqual([1,3,5])
+    expect(free_tiles_2).toEqual([2,6])
+  });
 
   it("should read board after every move", function(){
     currentState = game.readBoard(game.problem);
@@ -39,8 +43,12 @@ describe("Game", function() {
   });
 
   it("should equal true when game equals solution", function() {
-    winner = game.isWinner(game.solution);
+    shouldWin = game.readBoard(game.solution);
+    shouldLose = game.readBoard(game.problem);
+    winner = game.isWinner(shouldWin);
+    loser = game.isWinner(shouldLose);
     expect(winner).toEqual(true);
+    expect(loser).toEqual(false);
   });
 
   it("should do nothing if the game is still in play", function() {
