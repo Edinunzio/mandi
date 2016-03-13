@@ -40,10 +40,14 @@ function Game(solution, grid_size, legal_moves_map){
 		return this.legalMovesMap[zeroIndexPlusOne];
 	};
 
-	this.shufflesBoard = function(solution, grid_size, legal_moves_map){
-		zeroLocation = solution.length;
-		lmm = legal_moves_map;
+	this.shufflesBoard = function(solution, grid_size){
+		zeroLocation = solution.length - 1;
+		console.log(solution);
+		console.log(zeroLocation);
+		lmm = this.legalMovesMap;
+		console.log(lmm);
 		choices = this.getsLegalMoves(zeroLocation);
+		console.log(choices);
 		return choices;
 	};
 }
