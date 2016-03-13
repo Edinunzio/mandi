@@ -21,8 +21,9 @@ class NewPlayerTest(LiveServerTestCase):
 			512,
 			delta=5
 		)
+		self.assertEqual(puzzlebox.tag_name, 'div')
 		hintbutton = self.browser.find_element_by_id('hint')
-		self.assertEqual(type(hintbutton), 'button')
+		self.assertEqual(hintbutton.tag_name, 'div')
 
 	def test_can_show_puzzle_and_win(self):
 		# Barry visits the home page.
@@ -47,6 +48,10 @@ class NewPlayerTest(LiveServerTestCase):
 		self.assertEqual(grid_size_display_5.text, '5')
 		tiles_5 = self.browser.find_elements_by_class_name('tile')
 		self.assertEqual(len(tiles_5), 25)
+
+		# He sees the hint button and clicks on it, and something happens
+		hintbutton = self.browser.find_element_by_id('hint')
+		hintbutton.click()
 
 		# Barry scares quickly and decides to try an easier game with only 4 tiles
 		# He feels absolutely no shame as he enters "2" into the input box and hits enter

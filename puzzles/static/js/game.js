@@ -1,13 +1,12 @@
-function Game(problem, solution, grid_size, legal_moves_map){
-	this.problem = problem;
+function Game(solution, grid_size, legal_moves_map){
 	this.solution = solution;
 	this.gridSize = grid_size;
 	this.blankHtml = '<div class="tile blank_tile disabled"><p>0</p></div>';
 	this.legalMovesMap = legal_moves_map;
-	this.currentBoard = problem;
+	this.currentBoard = solution;
 
-	this.locatesEmptySpace = function(problem){
-		this.empty_space = problem.indexOf(0);
+	this.locatesEmptySpace = function(solution){
+		this.empty_space = solution.indexOf(0);
 		return this.empty_space;
 	};
 
