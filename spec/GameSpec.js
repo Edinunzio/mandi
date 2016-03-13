@@ -20,7 +20,11 @@ describe("Game", function() {
 
   it("should be able to locate the index of the empty space", function() {
     zero_location_0 = game.locatesEmptySpace([0,1,2,4,3,5,6,8,7])
+    zero_location_1 = game.locatesEmptySpace([1,0,2,4,3,5,6,8,7])
+    zero_location_15 = game.locatesEmptySpace([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0])
     expect(zero_location_0).toEqual(0)
+    expect(zero_location_1).toEqual(1)
+    expect(zero_location_15).toEqual(15)
   });
 
   it("should restrict draggability according to legal_moves_map", function(){
