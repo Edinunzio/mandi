@@ -1,5 +1,4 @@
 (function() {
-	
 
 	$('.tile_container').on('click', '.tile:not(.disabled)', function(e){
 		var blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
@@ -20,8 +19,6 @@
 		if (game.is_solved){
 			alert('Congratulations!');
 		}
-		//alert(solution);
-		//alert(game.currentBoard);
 		enableTiles(tiles);
 	});
 	$('#hint').on('click', function(e){

@@ -33,12 +33,13 @@
 					<div id="puzzle" class="puzzle_container">
 					{% for tile in tiles %}
 						<div class="tile_container placeholder_{{ forloop.counter }}" style="width:{{ tile_size }}%; height:{{ tile_size }}%;">
-						{% if tile == 0 %}
+						{% comment %}{% if tile == 0 %}
 							<div class="tile blank_tile disabled"><p>0</p></div>
 						{% else %}
 							<div class="tile disabled tile_{{ tile }}"><p>{{ tile }}</p></div>
 								
-						{% endif %}
+						{% endif %}{% endcomment %}
+						<div class="tile disabled"><p></p></div>
 						</div>
 					{% endfor %}
 					</div>
@@ -50,10 +51,25 @@
 				<script>
 				var solution = {{ tiles }};
 					var game = new Game({{ tiles }}, {{ grid_size }}, {{ legal_moves_map }});
-					
 					var board_new = game.shufflesBoard(game.solution, game.grid_size);
 					game.currentBoard = board_new;
-					//console.log(game.solution);
+
+					var initGame = function(){
+						this.start_order = game.solution;
+						this.tile_count = this.start_order.length;
+						this.targets_div = $('#puzzle .tile');
+						console.log(targets_div);
+						for(i=0; i<this.tile_count; i++){
+							if(this.start_order[i] === 0){
+								$(this.targets_div[i]).addClass('blank_tile');
+								$(this.targets_div[i]).html('<p>0</p>');
+							} else {
+								$(this.targets_div[i]).addClass('tile_'+start_order[i]);
+								$(this.targets_div[i]).html('<p>'+start_order[i]+'</p>');
+							}
+						};
+					}();
+
 					var enableTiles = function(tiles){
 						$('.tile').addClass('disabled');
 						var empty_start = game.locatesEmptySpace(tiles);
