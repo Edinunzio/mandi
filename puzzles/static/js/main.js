@@ -1,4 +1,11 @@
 (function() {
+	Array.prototype.swap = function (x,y) {
+		var b = this[x];
+		this[x] = this[y];
+		this[y] = b;
+		return this;
+	}
+	
 	$('.tile_container').on('click', '.tile:not(.disabled)', function(e){
 		var blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
 		var empty_tile = $('.blank_tile');
