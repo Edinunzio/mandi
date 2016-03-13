@@ -62,11 +62,12 @@ function Game(solution, grid_size, legal_moves_map){
 			//console.log(board);
 			
 			//var _board = board.swap(zeroLocation, swapabble);
-			
-			this.setupMoves.push(board);
+			var _board = board.slice(0);
+			this.setupMoves.push([_board]);
 			zeroLocation = swapabble;
 		}
 		console.log(this.setupMoves);
+		//alert(this.setupMoves);
 		return board;
 	};
 }
