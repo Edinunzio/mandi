@@ -23,6 +23,17 @@
         }
     });
     $('#hint').on('click', function(e){
-        alert('good luck, sucker! HA HA HA!');
+        var board_tiles = $('#puzzle .tile p');
+        var tiles = []
+        for (i=0;i<board_tiles.length; i++){
+            tiles.push(board_tiles[i].textContent);
+        }
+        _tiles = game.readBoard(tiles);
+        highlight_tile = game.generateHint(_tiles);
+        $('.tile_'+highlight_tile).addClass('highlight_tile');
+        setTimeout(function(){
+            $('.tile_'+highlight_tile).removeClass('highlight_tile');
+        },2000);
+        
     });
 })();

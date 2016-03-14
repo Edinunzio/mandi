@@ -31,6 +31,9 @@
     text-align: center;
     font-size: xx-large;
 }
+.highlight_tile{
+    background-color: #a94442;
+}
 
 .button {
     font-size: xx-large;
