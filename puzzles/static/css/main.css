@@ -7,11 +7,9 @@
     margin: auto;
     margin-bottom: 50px;
 }
-
 .tile_container {
     float:left;
 }
-
 .tile, .blank_tile {
     width: 100%;
     height: 100%;
@@ -20,10 +18,12 @@
     border: 1px solid #666;
     position: relative;
 }
+.blank_tile {
+    background-color: #000;
+    background-image: none !important;
+}
 
-.blank_tile { background-color: #000; }
 .blank_tile p {visibility: hidden;}
-
 .tile p {
     position: absolute;
     width:100%;
@@ -34,7 +34,6 @@
 .highlight_tile{
     background-color: #a94442;
 }
-
 .button, .turn-counter, .quit{
     font-size: xx-large;
     text-align: center;
@@ -46,7 +45,6 @@
     height:80px;
     background-color: none;
 }
-
 .quit{
     color: #fff;
     background-color: #a94442;

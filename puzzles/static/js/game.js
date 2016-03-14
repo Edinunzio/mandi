@@ -50,27 +50,13 @@ function Game(solution, grid_size, legal_moves_map){
     };
 
     this.generateHint = function(tiles){
-        var current_steps = this.sessionMoves;
-        if (current_steps.indexOf(tiles) > -1){
-            // checks if the current board configuration magically 
-            // matches one created during the shufflesBoard setup
-            // and then will return the "next step", which is really
-            // just going back one item in the setupMoves array
-            var board_state = current_steps.indexOf(tiles);
-            var hint = current_steps[board_state];
-            hint = hint.indexOf(0);
-            return hint;
-        } else {
-            // I started off in the a* search algo path but thought about the 
-            // use and audience would take more precendence, and since there
-            // isn't really a "best" known solution for this problem, to me, 
-            // the best hint would be to have the user retrace their steps to 
-            // the beginning of the puzzle, and eventually through to the end
-            var step_count = this.sessionMoves.length;
-            var hint = this.sessionMoves[step_count-1];
-            hint = hint.indexOf(0);
-            return hint;
-        }
+        var current_state = this.readBoard(tiles);
+        var hint_pool = this.sessionMoves;
+        var hint_length = hint_pool.length;
+        var board_1 = hint_pool[hint_length-1];
+        var board_2 = hint_pool[hint_length-2];
+        var swapped_tile = board_1.indexOf(0);
+        return board_2[swapped_tile];
     };
 
     this.shufflesBoard = function(sorted, solution, grid_size){
