@@ -1,6 +1,7 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.alert import Alert
 
 class NewPlayerTest(LiveServerTestCase):
 
@@ -32,11 +33,11 @@ class NewPlayerTest(LiveServerTestCase):
 		# He sees the puzzle loaded on the page
 		puzzle_container = self.browser.find_element_by_id('puzzle')
 
-		# He sees the number of tiles is the grid size ^2 which defaults to 3
-		grid_size_display_3 = self.browser.find_element_by_name('grid_size_display')
-		self.assertEqual(grid_size_display_3.text, '3 x 3')
-		tiles_3 = self.browser.find_elements_by_class_name('tile')
-		self.assertEqual(len(tiles_3), 9)
+		# He sees the number of tiles is the grid size ^2 which defaults to 4
+		grid_size_display_4 = self.browser.find_element_by_name('grid_size_display')
+		self.assertEqual(grid_size_display_4.text, '4 x 4')
+		tiles_4 = self.browser.find_elements_by_class_name('tile')
+		self.assertEqual(len(tiles_4), 16)
 
 		# He decides to try a different size puzzle and enters a 
 		# new grid size in the input box and a new game is loaded
@@ -52,14 +53,6 @@ class NewPlayerTest(LiveServerTestCase):
 		# He sees the hint button and clicks on it, and something happens
 		hintbutton = self.browser.find_element_by_id('hint')
 		hintbutton.click()
-
-		# Barry scares quickly and decides to try an easier game with only 4 tiles
-		# He feels absolutely no shame as he enters "2" into the input box and hits enter
-		inputgridbox = self.browser.find_element_by_id('grid_size')
-		inputgridbox.send_keys(2)
-		inputgridbox.send_keys(Keys.ENTER)
-		grid_size_display_2 = self.browser.find_element_by_name('grid_size_display')
-		self.assertEqual(grid_size_display_2.text, '2 x 2')
 
 		# Barry's ready to take a chance again so he clicks a swappable tile.
 		# He sees the tiles switch place upon click.

@@ -4,10 +4,9 @@ from django.core.exceptions import ValidationError
 from puzzles.models import Puzzle
 
 
-def home_page(request, grid_size=3):
+def home_page(request, grid_size=4):
 	puzzle = Puzzle()
 	try:
-		#request.POST['grid_size']
 		grid_size = request.POST['grid_size']
 	except ValidationError:
 		pass
