@@ -92,5 +92,15 @@ describe("Game", function() {
     expect(winner).toEqual(true);
     expect(loser).not.toEqual(true);
   });
+
+  it("should return sequence to solved puzzle when user clicks quit", function(){
+    currentBoard_1 = [1,2,3,4,5,0,7,8,6];
+    game.recordsMove(currentBoard_1)
+    currentBoard_2 = [1,2,0,4,5,3,7,8,6];
+    game.recordsMove(currentBoard_2);
+    currentBoard_3 = [1,0,2,4,5,3,7,8,6];
+    game.recordsMove(currentBoard_3);
+    expect(game.playBackSessionMoves).toEqual([[1,0,2,4,5,3,7,8,6],[1,2,0,4,5,3,7,8,6],[1,2,3,4,5,0,7,8,6]]);
+  });
   
 });

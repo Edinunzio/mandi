@@ -21,6 +21,13 @@ function Game(solution, grid_size, legal_moves_map){
         }
     };
 
+    /*this.playsBackSessionMoves = function(){
+        var playback = this.sessionMoves;
+        for(i=0; i<playback.length; i++){
+
+        }
+    };*/
+
     this.recordsMove = function(currentBoard){
         this.sessionMoves.push(currentBoard)
         this.turns_taken +=1;
