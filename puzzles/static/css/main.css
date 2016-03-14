@@ -35,10 +35,13 @@
     background-color: #a94442;
 }
 
-.button {
+.button, .turn-counter{
     font-size: xx-large;
     text-align: center;
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 6px;
+}
+.turn-counter{
+    background-color: none;
 }

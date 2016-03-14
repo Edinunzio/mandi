@@ -3,6 +3,7 @@
     $('.tile_container').on('click', '.tile:not(.disabled)', function(e){
         var blank_html = '<div class="tile blank_tile disabled"><p>0</p></div>';
         var empty_tile = $('.blank_tile');
+        var turn_counter = $('.turn-counter p');
         
         var num = this.textContent;
         var swap_html = '<div class="tile disabled tile_'+num+'"><p>'+ num +'</p></div>'
@@ -15,6 +16,7 @@
         }
         tiles = game.readBoard(tiles);
         game.recordsMove(tiles);
+        $('.turn-counter').html('<h3>'+game.turns_taken+'</h3>');
         game.isWinner(solution, game.currentBoard);
         if (game.is_solved){
             alert('Congratulations!');

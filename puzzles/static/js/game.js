@@ -7,6 +7,7 @@ function Game(solution, grid_size, legal_moves_map){
     this.sessionMoves = [];
     this.setupMoves = [];
     this.is_solved = false;
+    this.turns_taken = 0;
 
     this.locatesEmptySpace = function(currentBoard){
         this.empty_space = currentBoard.indexOf(0);
@@ -22,6 +23,7 @@ function Game(solution, grid_size, legal_moves_map){
 
     this.recordsMove = function(currentBoard){
         this.sessionMoves.push(currentBoard)
+        this.turns_taken +=1;
         return currentBoard;
     }
 
@@ -70,7 +72,6 @@ function Game(solution, grid_size, legal_moves_map){
     this.shufflesBoard = function(sorted, solution, grid_size){
         var zeroLocation = sorted.indexOf(0);
         var iterations = this.getRandomInt(zeroLocation, zeroLocation*2);
-        this.complexity = iterations;
         var board = this.solution;
 
         for(i=0; i<iterations; i++){
