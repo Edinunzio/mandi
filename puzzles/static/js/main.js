@@ -39,6 +39,7 @@
         
     });
     $('#quit').on('click', function () {
+        $('.sequence_container').html('');
         var steps = game.playBackSessionMoves();
         for (i=0;i<steps.length;i++){
             $('.sequence_container').append('<p>'+steps[i]+'</p>');
@@ -46,5 +47,7 @@
         $('.sequence_container').append('<p>'+solution+'</p>');
       $('#quit_sequence').modal();
     })
-
+    $('#quit_sequence').on('hidden.bs.modal', function (e) {
+        $('.sequence_container').html('');
+    })
 })();
