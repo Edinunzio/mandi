@@ -57,6 +57,33 @@ describe("Game", function() {
     expect(ex).not.toEqual([1,2,3,4,5,6,7,8,0]);
   });
 
+  it("should never return an impossible game", function(){
+    game_1 = game.shufflesBoard([1,2,3,0], 2);
+    game_2 = game.shufflesBoard([1,2,3,0], 2);
+    game_3 = game.shufflesBoard([1,2,3,0], 2);
+    game_4 = game.shufflesBoard([1,2,3,0], 2);
+    game_5 = game.shufflesBoard([1,2,3,0], 2);
+    game_6 = game.shufflesBoard([1,2,3,0], 2);
+    game_7 = game.shufflesBoard([1,2,3,0], 2);
+    game_8 = game.shufflesBoard([1,2,3,0], 2);
+    game_9 = game.shufflesBoard([1,2,3,0], 2);
+    game_10 = game.shufflesBoard([1,2,3,0], 2);
+    game_11 = game.shufflesBoard([1,2,3,0], 2);
+    game_12 = game.shufflesBoard([1,2,3,0], 2);
+    expect(game_1).not.toEqual([2,1,3,0])
+    expect(game_2).not.toEqual([2,1,3,0])
+    expect(game_3).not.toEqual([2,1,3,0])
+    expect(game_4).not.toEqual([2,1,3,0])
+    expect(game_5).not.toEqual([2,1,3,0])
+    expect(game_6).not.toEqual([2,1,3,0])
+    expect(game_7).not.toEqual([2,1,3,0])
+    expect(game_8).not.toEqual([2,1,3,0])
+    expect(game_9).not.toEqual([2,1,3,0])
+    expect(game_10).not.toEqual([2,1,3,0])
+    expect(game_11).not.toEqual([2,1,3,0])
+    expect(game_12).not.toEqual([2,1,3,0])
+  });
+
   it("should equal true when game equals solution", function() {
     shouldWin = game.readBoard(game.solution);
     shouldLose = game.readBoard([1,2,3,4,5,0,7,8,6]);

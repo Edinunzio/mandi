@@ -22,7 +22,7 @@
 					</div>
 					<hr>
 					<form method="POST">
-						<input type="number" class="form-control input-lg" min=3 name="grid_size" id="grid_size" placeholder="Change grid size"/>
+						<input type="number" class="form-control input-lg" min=2 name="grid_size" id="grid_size" placeholder="Change grid size"/>
 							{% csrf_token %}
 					</form>
 					<hr>
@@ -51,14 +51,13 @@
 				<script>
 				var solution = {{ tiles }};
 					var game = new Game({{ tiles }}, {{ grid_size }}, {{ legal_moves_map }});
-					var board_new = game.shufflesBoard(game.solution, game.grid_size);
+					var board_new = game.shufflesBoard({{ tiles }}, game.solution, game.grid_size);
 					game.currentBoard = board_new;
 
 					var initGame = function(){
 						this.start_order = game.solution;
 						this.tile_count = this.start_order.length;
 						this.targets_div = $('#puzzle .tile');
-						console.log(targets_div);
 						for(i=0; i<this.tile_count; i++){
 							if(this.start_order[i] === 0){
 								$(this.targets_div[i]).addClass('blank_tile');
