@@ -1,41 +1,41 @@
 .container input{
-	margin: auto;
+    margin: auto;
 }
 .puzzle_container {
-	width: 570px;
-	height: 570px;
-	margin: auto;
-	margin-bottom: 50px;
+    width: 570px;
+    height: 570px;
+    margin: auto;
+    margin-bottom: 50px;
 }
 
 .tile_container {
-	float:left;
+    float:left;
 }
 
 .tile, .blank_tile {
-	width: 100%;
-	height: 100%;
-	background-color: #eee;
-	margin: auto;
-	border: 1px solid #666;
-	position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    margin: auto;
+    border: 1px solid #666;
+    position: relative;
 }
 
 .blank_tile { background-color: #000; }
 .blank_tile p {visibility: hidden;}
 
 .tile p {
-	position: absolute;
-	width:100%;
-	top: 40%;
-	text-align: center;
-	font-size: xx-large;
+    position: absolute;
+    width:100%;
+    top: 40%;
+    text-align: center;
+    font-size: xx-large;
 }
 
 .button {
-	font-size: xx-large;
-	text-align: center;
-	padding-left: 30px;
-	padding-right: 30px;
-	border-radius: 6px;
+    font-size: xx-large;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 6px;
 }
