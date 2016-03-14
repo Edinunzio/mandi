@@ -5,7 +5,6 @@ function Game(solution, grid_size, legal_moves_map){
     this.legalMovesMap = legal_moves_map;
     this.currentBoard;
     this.sessionMoves = [];
-    this.setupMoves = [];
     this.is_solved = false;
     this.turns_taken = 0;
 
@@ -21,12 +20,10 @@ function Game(solution, grid_size, legal_moves_map){
         }
     };
 
-    /*this.playsBackSessionMoves = function(){
+    this.playBackSessionMoves = function(){
         var playback = this.sessionMoves;
-        for(i=0; i<playback.length; i++){
-
-        }
-    };*/
+        return playback.reverse();
+    };
 
     this.recordsMove = function(currentBoard){
         this.sessionMoves.push(currentBoard)

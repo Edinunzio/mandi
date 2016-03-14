@@ -35,7 +35,7 @@
     background-color: #a94442;
 }
 
-.button, .turn-counter{
+.button, .turn-counter, .quit{
     font-size: xx-large;
     text-align: center;
     padding-left: 30px;
@@ -44,4 +44,9 @@
 }
 .turn-counter{
     background-color: none;
+}
+
+.quit{
+    color: #fff;
+    background-color: #a94442;
 }

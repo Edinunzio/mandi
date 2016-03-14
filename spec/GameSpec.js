@@ -100,7 +100,7 @@ describe("Game", function() {
     game.recordsMove(currentBoard_2);
     currentBoard_3 = [1,0,2,4,5,3,7,8,6];
     game.recordsMove(currentBoard_3);
-    expect(game.playBackSessionMoves).toEqual([[1,0,2,4,5,3,7,8,6],[1,2,0,4,5,3,7,8,6],[1,2,3,4,5,0,7,8,6]]);
+    expect(game.playBackSessionMoves()).toEqual([[1,0,2,4,5,3,7,8,6],[1,2,0,4,5,3,7,8,6],[1,2,3,4,5,0,7,8,6]]);
   });
   
 });

@@ -20,7 +20,7 @@ class NewPlayerTest(LiveServerTestCase):
         self.assertAlmostEqual(
             puzzlebox.location['x'] + puzzlebox.size['width'] / 2,
             512,
-            delta=5
+            delta=20
         )
         self.assertEqual(puzzlebox.tag_name, 'div')
         hintbutton = self.browser.find_element_by_id('hint')
@@ -33,7 +33,7 @@ class NewPlayerTest(LiveServerTestCase):
         # He sees the puzzle loaded on the page
         puzzle_container = self.browser.find_element_by_id('puzzle')
 
-        # He sees the number of tiles is the grid size ^2 which defaults to 4
+        # He sees the number of tiles is the grid size **2 which defaults to 4
         grid_size_display_4 = self.browser.find_element_by_name('grid_size_display')
         self.assertEqual(grid_size_display_4.text, '4 x 4')
         tiles_4 = self.browser.find_elements_by_class_name('tile')
@@ -53,6 +53,10 @@ class NewPlayerTest(LiveServerTestCase):
         # He sees the hint button and clicks on it, and something happens
         hintbutton = self.browser.find_element_by_id('hint')
         hintbutton.click()
+
+        # Insulted by how useless the "hint" was, Barry, decides to rage quit.
+        quitbutton = self.browser.find_element_by_id('quit')
+        quitbutton.click()
 
         # Barry's ready to take a chance again so he clicks a swappable tile.
         # He sees the tiles switch place upon click.

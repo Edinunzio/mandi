@@ -16,6 +16,22 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
+                    <div class="modal fade" id="quit_sequence" tabindex="-1" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Steps to Solve the puzzle</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="sequence_container"></div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
                     <div class="h2 text-center">
                         <label>Grid Size</label> 
                         <p name="grid_size_display"> {{ grid_size }} x {{grid_size}}</p>
@@ -30,6 +46,8 @@
                     <hr>
                     <h2 class="text-center">Turns Taken</h2>
                     <div class="turn-counter"></div>
+                    <hr>
+                    <div id="quit" class="quit" data-target="#quit_sequence">Quit</div>
                     
                 </div>
                 <div class="col-md-9">

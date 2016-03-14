@@ -38,4 +38,13 @@
         },2000);
         
     });
+    $('#quit').on('click', function () {
+        var steps = game.playBackSessionMoves();
+        for (i=0;i<steps.length;i++){
+            $('.sequence_container').append('<p>'+steps[i]+'</p>');
+        }
+        $('.sequence_container').append('<p>'+solution+'</p>');
+      $('#quit_sequence').modal();
+    })
+
 })();
