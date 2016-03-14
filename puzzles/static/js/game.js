@@ -44,21 +44,14 @@ function Game(solution, grid_size, legal_moves_map){
     };
 
     this.generateHint = function(tiles){
-        var zero_position = this.locatesEmptySpace(tiles);
-        var hint;
-        if (this.setupMoves.indexOf(tiles) > -1 || this.sessionMoves.length == 0){
+        var current_steps = this.sessionMoves;
+        if (current_steps.indexOf(tiles) > -1){
             // checks if the current board configuration magically 
             // matches one created during the shufflesBoard setup
             // and then will return the "next step", which is really
             // just going back one item in the setupMoves array
-            var board_state = this.setupMoves.indexOf(tiles);
-
-            if(board_state === -1){
-                steps = this.setupMoves.length;
-                hint = this.setupMoves[steps-2];
-            } else {
-                hint = this.setupMoves[board_state];
-            }
+            var board_state = current_steps.indexOf(tiles);
+            var hint = current_steps[board_state];
             hint = hint.indexOf(0);
             return hint;
         } else {
@@ -67,18 +60,17 @@ function Game(solution, grid_size, legal_moves_map){
             // isn't really a "best" known solution for this problem, to me, 
             // the best hint would be to have the user retrace their steps to 
             // the beginning of the puzzle, and eventually through to the end
-            steps = this.sessionMoves.length;
-            hint = this.sessionMoves[steps-1];
+            var step_count = this.sessionMoves.length;
+            var hint = this.sessionMoves[step_count-1];
             hint = hint.indexOf(0);
             return hint;
         }
-        
     };
-
 
     this.shufflesBoard = function(sorted, solution, grid_size){
         var zeroLocation = sorted.indexOf(0);
         var iterations = this.getRandomInt(zeroLocation, zeroLocation*2);
+        this.complexity = iterations;
         var board = this.solution;
 
         for(i=0; i<iterations; i++){
@@ -89,7 +81,7 @@ function Game(solution, grid_size, legal_moves_map){
             board[zeroLocation] = board[swapabble];
             board[swapabble] = b;
             var _board = board.slice(0);
-            this.setupMoves.push(_board);
+            this.sessionMoves.push(_board);
             zeroLocation = swapabble;
         }
         return board;
