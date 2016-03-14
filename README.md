@@ -1,10 +1,19 @@
-Etsy code test
+# Sliding Puzzle Exercise
+***
 
-This uses python 3.4.4 so if using pip to install, be sure to use pip3, python3. Depending on your setup. 
+### Etsy code test
+***
 
-Additional python dependencies can be found in requirements.txt
-Django's TestCase, Selenium and Jasmine were used for unit tests, and functional tests.
 
-The last line in game.js is for jasmine tests, but would not be on production.
+
+##### Dependencies & Requirements
+
+* Python 3.4.4
+* Django 1.9.4 _included on requirements.txt_
+* Selenium 2.52.0 _included on requirements.txt_
+
+
+
+*The last line in game.js is for jasmine tests, but would not be on production.*
 
 
