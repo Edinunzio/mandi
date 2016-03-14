@@ -57,9 +57,3 @@ class NewPlayerTest(LiveServerTestCase):
         # Insulted by how useless the "hint" was, Barry, decides to rage quit.
         quitbutton = self.browser.find_element_by_id('quit')
         quitbutton.click()
-
-        # Barry's ready to take a chance again so he clicks a swappable tile.
-        # He sees the tiles switch place upon click.
-        self.fail('Finish the test!')
-
-        # He solves the puzzle and sees the congratulations message

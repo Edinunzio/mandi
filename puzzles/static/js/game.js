@@ -78,6 +78,5 @@ function Game(solution, grid_size, legal_moves_map){
         return board;
     };
 }
-
 // uncomment below for jasmine tests. comment out for prod
-module.exports = Game;
+// module.exports = Game;
